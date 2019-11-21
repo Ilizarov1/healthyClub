@@ -90,6 +90,7 @@ public class CartController
             neworder.setHealthyitemName(x.getHealthyitemName());
             neworder.setJsName(x.getJsName());
             neworder.setType(x.getType());
+            neworder.setJsId(x.getJsId());
             UserOrder tempOrder= orderService.save(neworder);
             if(orderService.findById(tempOrder.getId())!=null)
             {

@@ -32,4 +32,9 @@ public class OrderServiceImpl implements OrderService
     {
         return orderRepository.findAll();
     }
+    @Override
+    public List<UserOrder> findByJsId(long jsId)
+    {
+        return orderRepository.findByJsId(jsId);
+    }
 }

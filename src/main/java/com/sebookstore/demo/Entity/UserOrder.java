@@ -20,10 +20,26 @@ public class UserOrder implements Serializable
 
     @Column
     private Long userId;
+
+    public boolean isState() {
+        return state;
+    }
+
     @Column
     private Long healthyitemId;
     @Column
     private String jsName;
+    @Column
+    private long jsId;
+
+    public long getJsId() {
+        return jsId;
+    }
+
+    public void setJsId(long jsId) {
+        this.jsId = jsId;
+    }
+
     @Column
     private String healthyitemName;
     @Column

@@ -22,7 +22,7 @@
 
 </head>
 
-<body th:if="${session.jishi!=null}">
+<body th:if="${session.admin!=null}">
 <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
         <div class="navbar-header">
@@ -41,18 +41,14 @@
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
 
-                <li><a th:href="@{/addItem}">新增健康项目<span class="sr-only">(current)</span></a></li>
-                <li><a th:href="@{/jsList}">我的健康项目</a></li>
-                <li><a th:href="@{/jsself}">我自己</a></li>
-                <!--
-                <li><a th:href="@{/user/active}">活跃用户</a></li>
-                <li><a th:href="@{/user/silence}">沉默用户</a></li>
-                <li><a th:href="@{/user/analysis}">用户留存分析</a></li>
-                -->
+                <li><a th:href="@{/updateBook}">所有项目</a></li>
+                <li><a th:href="@{/updateUser}">用户管理</a></li>
+                <li><a th:href="@{/updateJishi}">技师管理</a></li>
+                <li><a th:href="@{/updateOrder}">订单管理</a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">新增健康项目</h1>
+            <h1 class="page-header">分配健康项目</h1>
             <div class="row">
                 <div class="col-md-8">
                     <div class="form-group">
@@ -77,16 +73,16 @@
                         <label for="jsid">技师编号</label>
                         <input type="text" class="form-control" name="jsid" disabled="disabled" id="jsid" th:value="${session.jishi.getId()}">
                     </div>
-                        <div class="form-group">
-                            <label>价格/元</label>
-                            <label class="sr-only" for="price_beforeDot">整数部分</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" name="price_beforeDot" id="price_beforeDot" placeholder="请输入价格的整数部分">
-                                <div class="input-group-addon">.</div>
-                                <label class="sr-only" for="price_afterDot">小数部分</label>
-                                <input type="text" class="form-control" name="price_afterDot" id="price_afterDot" placeholder="请输入价格的小数部分">
-                            </div>
+                    <div class="form-group">
+                        <label>价格/元</label>
+                        <label class="sr-only" for="price_beforeDot">整数部分</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="price_beforeDot" id="price_beforeDot" placeholder="请输入价格的整数部分">
+                            <div class="input-group-addon">.</div>
+                            <label class="sr-only" for="price_afterDot">小数部分</label>
+                            <input type="text" class="form-control" name="price_afterDot" id="price_afterDot" placeholder="请输入价格的小数部分">
                         </div>
+                    </div>
                     <div class="form-group">
                         <label for="startTime">时间范围</label><br>
                         <input type="text" class="form-control" name="startTime" id="startTime" placeholder="请选择时间范围">
@@ -145,7 +141,7 @@
     function checkValidityAndSubmit() {
 
         if(checkBookName(healthyItem)&&checkAuthor(healthyItem)&&checkPrice(healthyItem)
-        &&checkType(healthyItem))
+            &&checkType(healthyItem))
         {
             var staticBook=JSON.stringify(healthyItem);
             console.log(staticBook);
@@ -171,67 +167,67 @@
         }
     }
 
-function checkBookName(healthyItem) {
-    var healthyitemName=$('#bookName').val();
-    healthyItem.healthyitemName=healthyitemName;
-    if(healthyitemName.length<=60){
-        return true;
-    }else{
-        alert("名称过长");
-    }
-    return false;
-}
-
-function checkAuthor(healthyItem) {
-    var author=$('#author').val();
-    var jsid = $('#jsid').val();
-    healthyItem.jsName=author;
-    healthyItem.jsId=jsid;
-    if(author.length<=35){
-        return true;
-    }else{
-        alert("名字过长");
-    }
-    return false;
-}
-
-function checkPrice(healthyItem) {
-    var price_beforeDot=$('#price_beforeDot').val();
-    var price_afterDot=$('#price_afterDot').val();
-    var reg=new RegExp("^\\d{0,8}$");
-    var reg2=new RegExp("^\\d{0,2}$");
-    console.log(reg.test(price_beforeDot));
-    console.log(reg2.test(price_afterDot));
-    healthyItem.price=parseFloat(price_beforeDot+"."+price_afterDot);
-    if(reg.test(price_beforeDot)&&reg2.test(price_afterDot)){
-        return true;
-    }else{
-        alert("价格格式错误");
-    }
-    return false;
-}
-
-// function checkAmount(healthyItem) {
-//     var amount=$('#amount').val();
-//     healthyItem.space=parseInt(amount);
-//     var reg=/\d{0,11}/;
-//     if(reg.test(amount)){
-//         return true;
-//     }else{
-//         alert("数量格式错误");
-//     }
-//     return false;
-// }
-
-function checkType(healthyItem) {
-    var type = $('#type').val();
-    healthyItem.type = type;
-    if(type=="default"){
-        alert("请选择一个类型");
+    function checkBookName(healthyItem) {
+        var healthyitemName=$('#bookName').val();
+        healthyItem.healthyitemName=healthyitemName;
+        if(healthyitemName.length<=60){
+            return true;
+        }else{
+            alert("名称过长");
+        }
         return false;
     }
-    return true;
-}
+
+    function checkAuthor(healthyItem) {
+        var author=$('#author').val();
+        var jsid = $('#jsid').val();
+        healthyItem.jsName=author;
+        healthyItem.jsId=jsid;
+        if(author.length<=35){
+            return true;
+        }else{
+            alert("名字过长");
+        }
+        return false;
+    }
+
+    function checkPrice(healthyItem) {
+        var price_beforeDot=$('#price_beforeDot').val();
+        var price_afterDot=$('#price_afterDot').val();
+        var reg=new RegExp("^\\d{0,8}$");
+        var reg2=new RegExp("^\\d{0,2}$");
+        console.log(reg.test(price_beforeDot));
+        console.log(reg2.test(price_afterDot));
+        healthyItem.price=parseFloat(price_beforeDot+"."+price_afterDot);
+        if(reg.test(price_beforeDot)&&reg2.test(price_afterDot)){
+            return true;
+        }else{
+            alert("价格格式错误");
+        }
+        return false;
+    }
+
+    // function checkAmount(healthyItem) {
+    //     var amount=$('#amount').val();
+    //     healthyItem.space=parseInt(amount);
+    //     var reg=/\d{0,11}/;
+    //     if(reg.test(amount)){
+    //         return true;
+    //     }else{
+    //         alert("数量格式错误");
+    //     }
+    //     return false;
+    // }
+
+    function checkType(healthyItem) {
+        var type = $('#type').val();
+        healthyItem.type = type;
+        if(type=="default"){
+            alert("请选择一个类型");
+            return false;
+        }
+        return true;
+    }
 
 
 
@@ -240,11 +236,11 @@ function checkType(healthyItem) {
 
 
 </body>
-<body th:unless="${session.jishi!=null}" onload="illegal()">
-    <script>
-        function illegal() {
-            alert("您还不是技师/没有进行技师登陆");
-        }
-    </script>
+<body th:unless="${session.admin!=null}" onload="illegal()">
+<script>
+    function illegal() {
+        alert("您还不是管理员/没有进行管理员登陆");
+    }
+</script>
 </body>
 </html>

@@ -85,7 +85,7 @@ public class RegisterController
     public String doJishiLogin(@RequestBody JSUser jsUser, HttpSession httpSession)
     {
         JSUser tempJS = jsService.findByJsName(jsUser.getJsName());
-        System.out.println(jsUser);
+        System.out.println(jsUser.getJsName());
         if(tempJS==null)
         {
             return "none";

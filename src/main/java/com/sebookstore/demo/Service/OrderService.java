@@ -10,5 +10,6 @@ public interface OrderService
     List<UserOrder> findByUserId(long userId);
     List<UserOrder> findAll();
     List<UserOrder> findByHealthyitemId(long healthyitemId);
+    List<UserOrder> findByJsId(long jsId);
     UserOrder save(UserOrder userOrder);
 }

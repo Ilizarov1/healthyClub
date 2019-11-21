@@ -17,6 +17,20 @@ public class JSUser implements Serializable {
     private String jsName;
     @Column
     private String jsPwd;
+    @Column
+    private int jsStatu;
+
+
+
+    public int getJsStatu() {
+        return jsStatu;
+    }
+
+    public void setJsStatu(int jsStatu) {
+        this.jsStatu = jsStatu;
+    }
+
+
 
     public Long getId() {
         return id;

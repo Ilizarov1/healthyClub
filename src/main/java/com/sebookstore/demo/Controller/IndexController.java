@@ -78,5 +78,7 @@ public class IndexController
     public String allJishi(){return "admin/updateJishi";}
     @RequestMapping(value = "/updateOrder")
     public String allOrders(){return "admin/updateOrder";}
+    @RequestMapping(value = "/jsself")
+    public String Jsself(){return "jiShi/self";}
 
 }

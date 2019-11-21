@@ -20,4 +20,8 @@ public class JSServiceImpl implements JSService {
     }
     @Override
     public List<JSUser> findAll(){return  jsRepository.findAll();}
+    @Override
+    public JSUser findById(long id){return jsRepository.findById(id);}
+    @Override
+    public JSUser save(JSUser jsUser){return jsRepository.save(jsUser);}
 }

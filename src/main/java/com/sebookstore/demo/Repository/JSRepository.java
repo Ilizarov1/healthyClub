@@ -10,4 +10,5 @@ public interface JSRepository extends JpaRepository<JSUser,Long>
 {
         JSUser findByJsName(String jsName);
         List<JSUser> findAll();
+        JSUser findById(long id);
 }
