@@ -175,4 +175,12 @@ public class BookController
         return jsonArray;
     }
 
+    @RequestMapping(value = "/doMission",method = RequestMethod.GET)
+    public String doMission(@RequestParam long id,HttpSession httpSession)
+    {
+        JSUser jsUser=jsRepository.findById(id);
+        httpSession.setAttribute("jishi",jsUser);
+        return "admin/distribute";
+    }
+
 }

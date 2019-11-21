@@ -81,4 +81,7 @@ public class IndexController
     @RequestMapping(value = "/jsself")
     public String Jsself(){return "jiShi/self";}
 
+    @RequestMapping(value = "/jishisignup")
+    public String jishisignup(){return "register/jishisignup";}
+
 }
