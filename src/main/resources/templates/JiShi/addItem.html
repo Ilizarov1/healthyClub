@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <!-- saved from url=(0050)https://v3.bootcss.com/examples/starter-template/# -->
-<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,13 +28,18 @@
 <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" th:href="@{/}">健康会所管理系统</a>
+            <text th:if="${session.jishi != null}" class="navbar-brand" font-size="8px">技师</text>
+            <text th:if="${session.jishi != null}" class="navbar-brand" th:text=" ${session.jishi.getJsName()}"></text>
+            <button th:if="${session.jishi != null}" class="btn btn-outline-info" onclick="loginOut()">注销</button>
+
         </div>
     </div><!-- /.container -->
 </nav><!-- /.navbar -->
@@ -63,37 +70,41 @@
                         <!--data-toggle="dropdown" 默认是隐藏哦,自动的触发事件下拉;-->
                         <select type="text" class="form-control" name="type" id="type">
                             <option value="default" selected="selected">请选择项目类型</option>
-                            <option value = "大保健">大保健</option>
-                            <option value = "稍大保健">稍大保健</option>
-                            <option value = "中保健">中保健</option>
-                            <option value = "小保健">小保健</option>
+                            <option value="大保健">大保健</option>
+                            <option value="稍大保健">稍大保健</option>
+                            <option value="中保健">中保健</option>
+                            <option value="小保健">小保健</option>
                         </select>
                     </div>
 
 
                     <div class="form-group">
                         <label for="author">技师名称</label>
-                        <input type="text" class="form-control" name="author" disabled="disabled" id="author" th:value="${session.jishi.getJsName()}">
+                        <input type="text" class="form-control" name="author" disabled="disabled" id="author"
+                               th:value="${session.jishi.getJsName()}">
                         <label for="jsid">技师编号</label>
-                        <input type="text" class="form-control" name="jsid" disabled="disabled" id="jsid" th:value="${session.jishi.getId()}">
+                        <input type="text" class="form-control" name="jsid" disabled="disabled" id="jsid"
+                               th:value="${session.jishi.getId()}">
                     </div>
-                        <div class="form-group">
-                            <label>价格/元</label>
-                            <label class="sr-only" for="price_beforeDot">整数部分</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" name="price_beforeDot" id="price_beforeDot" placeholder="请输入价格的整数部分">
-                                <div class="input-group-addon">.</div>
-                                <label class="sr-only" for="price_afterDot">小数部分</label>
-                                <input type="text" class="form-control" name="price_afterDot" id="price_afterDot" placeholder="请输入价格的小数部分">
-                            </div>
+                    <div class="form-group">
+                        <label>价格/元</label>
+                        <label class="sr-only" for="price_beforeDot">整数部分</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="price_beforeDot" id="price_beforeDot"
+                                   placeholder="请输入价格的整数部分">
+                            <div class="input-group-addon">.</div>
+                            <label class="sr-only" for="price_afterDot">小数部分</label>
+                            <input type="text" class="form-control" name="price_afterDot" id="price_afterDot"
+                                   placeholder="请输入价格的小数部分">
                         </div>
+                    </div>
                     <div class="form-group">
                         <label for="startTime">时间范围</label><br>
                         <input type="text" class="form-control" name="startTime" id="startTime" placeholder="请选择时间范围">
                     </div>
                     <div class="form-group">
                         <button class="btn btn-primary" onclick="checkValidityAndSubmit()">提交</button>
-                        <button class="btn btn-default"><a th:href="@{/}">返回</a> </button>
+                        <button class="btn btn-default"><a th:href="@{/}">返回</a></button>
                     </div>
                 </div>
             </div>
@@ -103,148 +114,161 @@
 </div>
 
 
-
 <script th:src="@{/js/jquery.min.js}"></script>
 <script th:src="@{/js/bootstrap.js}"></script>
 <script th:src="@{/js/dayjs.min.js}"></script>
 <script th:src="@{/laydate/laydate.js}"></script>
 <script>
-    var healthyItem={
-        "healthyitemName":"",
-        "jsName":"",
-        "jsId":-1,
-        "price":0.0,
-        "space":1,
-        "type":"",
-        "startTime":"",
-        "now":"",
-        "state":true,
-        "endTime":""
+    var healthyItem = {
+        "healthyitemName": "",
+        "jsName": "",
+        "jsId": -1,
+        "price": 0.0,
+        "space": 1,
+        "type": "",
+        "startTime": "",
+        "now": "",
+        "state": true,
+        "endTime": ""
     };
     laydate.render({
         elem: '#startTime'
-        ,type: 'time'
-        ,range:true
-        ,change:function (value,date,endDate) {
-            var date1=dayjs();var date2=dayjs();
-            date1=dayjs(date1).set('hour',date.hours);
-            date1=dayjs(date1).set('minute',date.minutes);
-            date1=dayjs(date1).set('second',date.seconds);
-            date1=dayjs(date1).add(1,'day');
-            date2=dayjs(date2).set('hour',endDate.hours);
-            date2=dayjs(date2).set('minute',endDate.minutes);
-            date2=dayjs(date2).set('second',endDate.seconds);
-            date2=dayjs(date2).add(1,'day');
+        , type: 'time'
+        , range: true
+        , change: function (value, date, endDate) {
+            var date1 = dayjs();
+            var date2 = dayjs();
+            date1 = dayjs(date1).set('hour', date.hours);
+            date1 = dayjs(date1).set('minute', date.minutes);
+            date1 = dayjs(date1).set('second', date.seconds);
+            date1 = dayjs(date1).add(1, 'day');
+            date2 = dayjs(date2).set('hour', endDate.hours);
+            date2 = dayjs(date2).set('minute', endDate.minutes);
+            date2 = dayjs(date2).set('second', endDate.seconds);
+            date2 = dayjs(date2).add(1, 'day');
             console.log(date1.format('YYYY-MM-DD HH:mm:ss'));
             console.log(date2.format('YYYY-MM-DD HH:mm:ss'));
-            healthyItem.startTime=date1.format('YYYY-MM-DD HH:mm:ss');
-            healthyItem.endTime=date2.format('YYYY-MM-DD HH:mm:ss');
+            healthyItem.startTime = date1.format('YYYY-MM-DD HH:mm:ss');
+            healthyItem.endTime = date2.format('YYYY-MM-DD HH:mm:ss');
         }
     });
 
     function checkValidityAndSubmit() {
 
-        if(checkBookName(healthyItem)&&checkAuthor(healthyItem)&&checkPrice(healthyItem)
-        &&checkType(healthyItem))
-        {
-            var staticBook=JSON.stringify(healthyItem);
+        if (checkBookName(healthyItem) && checkAuthor(healthyItem) && checkPrice(healthyItem)
+            && checkType(healthyItem)) {
+            var staticBook = JSON.stringify(healthyItem);
             console.log(staticBook);
             $.ajax({
-                type:"POST",
-                url:"/doAddItem",
-                contentType:'application/json;charset=UTF-8',
-                data:staticBook,
-                success:function (data) {
-                    if(data=="success"){
+                type: "POST",
+                url: "/doAddItem",
+                contentType: 'application/json;charset=UTF-8',
+                data: staticBook,
+                success: function (data) {
+                    if (data == "success") {
                         alert("新增成功");
-                        location="/addItem";
-                    }
-                    else if(data=="failure"){
+                        location = "/addItem";
+                    } else if (data == "failure") {
                         alert("新增失败");
-                        location="/addItem";
+                        location = "/addItem";
                     }
                 },
-                error:function (e) {
-                    alert("发生异常"+e);
+                error: function (e) {
+                    alert("发生异常" + e);
                 }
             });
         }
     }
 
-function checkBookName(healthyItem) {
-    var healthyitemName=$('#bookName').val();
-    healthyItem.healthyitemName=healthyitemName;
-    if(healthyitemName.length<=60){
-        return true;
-    }else{
-        alert("名称过长");
-    }
-    return false;
-}
-
-function checkAuthor(healthyItem) {
-    var author=$('#author').val();
-    var jsid = $('#jsid').val();
-    healthyItem.jsName=author;
-    healthyItem.jsId=jsid;
-    if(author.length<=35){
-        return true;
-    }else{
-        alert("名字过长");
-    }
-    return false;
-}
-
-function checkPrice(healthyItem) {
-    var price_beforeDot=$('#price_beforeDot').val();
-    var price_afterDot=$('#price_afterDot').val();
-    var reg=new RegExp("^\\d{0,8}$");
-    var reg2=new RegExp("^\\d{0,2}$");
-    console.log(reg.test(price_beforeDot));
-    console.log(reg2.test(price_afterDot));
-    healthyItem.price=parseFloat(price_beforeDot+"."+price_afterDot);
-    if(reg.test(price_beforeDot)&&reg2.test(price_afterDot)){
-        return true;
-    }else{
-        alert("价格格式错误");
-    }
-    return false;
-}
-
-// function checkAmount(healthyItem) {
-//     var amount=$('#amount').val();
-//     healthyItem.space=parseInt(amount);
-//     var reg=/\d{0,11}/;
-//     if(reg.test(amount)){
-//         return true;
-//     }else{
-//         alert("数量格式错误");
-//     }
-//     return false;
-// }
-
-function checkType(healthyItem) {
-    var type = $('#type').val();
-    healthyItem.type = type;
-    if(type=="default"){
-        alert("请选择一个类型");
+    function checkBookName(healthyItem) {
+        var healthyitemName = $('#bookName').val();
+        healthyItem.healthyitemName = healthyitemName;
+        if (healthyitemName.length <= 60) {
+            return true;
+        } else {
+            alert("名称过长");
+        }
         return false;
     }
-    return true;
-}
 
+    function checkAuthor(healthyItem) {
+        var author = $('#author').val();
+        var jsid = $('#jsid').val();
+        healthyItem.jsName = author;
+        healthyItem.jsId = jsid;
+        if (author.length <= 35) {
+            return true;
+        } else {
+            alert("名字过长");
+        }
+        return false;
+    }
 
+    function checkPrice(healthyItem) {
+        var price_beforeDot = $('#price_beforeDot').val();
+        var price_afterDot = $('#price_afterDot').val();
+        var reg = new RegExp("^\\d{0,8}$");
+        var reg2 = new RegExp("^\\d{0,2}$");
+        console.log(reg.test(price_beforeDot));
+        console.log(reg2.test(price_afterDot));
+        healthyItem.price = parseFloat(price_beforeDot + "." + price_afterDot);
+        if (reg.test(price_beforeDot) && reg2.test(price_afterDot)) {
+            return true;
+        } else {
+            alert("价格格式错误");
+        }
+        return false;
+    }
+
+    // function checkAmount(healthyItem) {
+    //     var amount=$('#amount').val();
+    //     healthyItem.space=parseInt(amount);
+    //     var reg=/\d{0,11}/;
+    //     if(reg.test(amount)){
+    //         return true;
+    //     }else{
+    //         alert("数量格式错误");
+    //     }
+    //     return false;
+    // }
+
+    function checkType(healthyItem) {
+        var type = $('#type').val();
+        healthyItem.type = type;
+        if (type == "default") {
+            alert("请选择一个类型");
+            return false;
+        }
+        return true;
+    }
+
+    function loginOut() {
+        $.ajax({
+            type: "POST",
+            url: "/loginOut",
+            contentType: 'application/json;charset=UTF-8',
+            data: {},
+            success: function (data) {
+                if (data == 'success') {
+                    alert('退出成功！');
+                    window.location.href = '/';
+                } else {
+                    alert('发生错误,完成失败');
+                    history.back(-1);
+                }
+            }
+        })
+    }
 
 </script>
 
 
-
 </body>
 <body th:unless="${session.jishi!=null}" onload="illegal()">
-    <script>
-        function illegal() {
-            alert("您还不是技师/没有进行技师登陆");
-        }
-    </script>
+<script>
+    function illegal() {
+        alert("您还不是技师/没有进行技师登陆");
+    }
+</script>
 </body>
 </html>
