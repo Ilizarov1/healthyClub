@@ -33,7 +33,3 @@ public class QueryController {
         return jsonArray;
     }
 }
-
-
-//fucker
-//hell

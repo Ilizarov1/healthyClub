@@ -42,7 +42,7 @@
                 <li><a th:href="@{/updateBook}">所有项目</a></li>
                 <li><a th:href="@{/updateUser}">用户管理</a></li>
                 <li><a th:href="@{/updateJishi}">技师管理</a></li>
-                <li><a th:href="@{/updateOrder}">订单管理</a></li>
+                <li class="active"><a th:href="@{/updateOrder}">订单管理</a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -57,7 +57,6 @@
                             <th>开始时间</th>
                             <th>结束时间</th>
                             <th>订单状态</th>
-                            <th>修改</th>
                         </tr>
                         <tbody id="bookBody">
 
@@ -101,7 +100,6 @@
                 "<td>"+dayjs(orderList[i].startTime).format('YYYY-MM-DD HH:mm:ss')+"</td>"+
                 "<td>"+dayjs(orderList[i].endTime).format('YYYY-MM-DD HH:mm:ss')+"</td>"+
                 "<td>"+state+"</td>"+
-                "<td><button onclick='#'>修改</button></td>"+
                 "</tr>";
         }
     }

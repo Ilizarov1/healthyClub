@@ -33,14 +33,31 @@ public class RegisterController
     public String addNewUser(@RequestBody User user, HttpSession httpSession)
     {
         User tempUser=userService.findByUserName(user.getUserName());
-        if(tempUser.getUserName().equals(""))
+        if(tempUser==null)
         {
-            return "failure";
+            userService.save(user);
+            httpSession.setAttribute("user",user);
+            return "success";
         }
-        userService.save(user);
-        httpSession.setAttribute("user",user);
-        return "success";
+        else return "failure";
+
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/dojishiSignUp",method = RequestMethod.POST)
+    public String addNewJS(@RequestBody JSUser jsUser)
+    {
+        JSUser tempJS=jsService.findByJsName(jsUser.getJsName());
+        if(tempJS==null)
+        {
+            jsService.save(jsUser);
+            return "success";
+        }
+        else return "failure";
+
+    }
+
+
     @ResponseBody
     @RequestMapping(value = "/doLogin",method = RequestMethod.POST)
     public String doLogin(@RequestBody User user,HttpSession httpSession)
@@ -85,7 +102,7 @@ public class RegisterController
     public String doJishiLogin(@RequestBody JSUser jsUser, HttpSession httpSession)
     {
         JSUser tempJS = jsService.findByJsName(jsUser.getJsName());
-        System.out.println(jsUser);
+        System.out.println(jsUser.getJsName());
         if(tempJS==null)
         {
             return "none";

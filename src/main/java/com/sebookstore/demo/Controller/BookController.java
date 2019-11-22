@@ -175,4 +175,41 @@ public class BookController
         return jsonArray;
     }
 
+    @RequestMapping(value = "/doMission",method = RequestMethod.GET)
+    public String doMission(@RequestParam long id,HttpSession httpSession)
+    {
+        JSUser jsUser=jsRepository.findById(id);
+        httpSession.setAttribute("jishi",jsUser);
+        return "admin/distribute";
+    }
+
+
+    @ResponseBody
+    @RequestMapping(value = "/doUpdateItem",method = RequestMethod.POST)
+    public String doUpdateItem(@RequestBody HealthyItem healthyItem,HttpSession httpSession)
+    {
+//        System.out.println(healthyItem.getId());
+//        System.out.println(healthyItem.getStartTime());
+//        System.out.println(healthyItem.getEndTime());
+        httpSession.setAttribute("itemUpdated",healthyItem);
+        return "success";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/doUpdateUser",method = RequestMethod.POST)
+    public String doUpdateUser(@RequestBody User user)
+    {
+        userService.save(user);
+        return "success";
+    }
+
+    @RequestMapping(value = "/showInfo",method = RequestMethod.GET)
+    public String showInfo(@RequestParam long id,HttpSession httpSession)
+    {
+        JSUser jsUser=jsRepository.findById(id);
+        httpSession.setAttribute("jsId",jsUser.getId());
+        System.out.println("这里是更多:"+jsUser.getId());
+        return "admin/jishiDetail";
+    }
+
 }

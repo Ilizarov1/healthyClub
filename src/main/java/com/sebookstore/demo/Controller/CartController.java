@@ -70,7 +70,7 @@ public class CartController
             }
         }
         httpSession.setAttribute("cart",booksInCart);
-        return "User/cart";
+        return "redirect:/usercart";
     }
     @ResponseBody
     @RequestMapping(value = "/doPay")
