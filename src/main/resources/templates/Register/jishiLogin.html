@@ -20,7 +20,7 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<body class="bg-gradient-primary" th:if="${session.jishi==null}">
 
 <div class="container">
 
@@ -135,5 +135,11 @@
     }
 </script>
 </body>
-
+<body th:unless="${session.jishi==null}" onload="turn()">
+<script>
+    function turn() {
+        window.location.href="/jsList";
+    }
+</script>
+</body>
 </html>

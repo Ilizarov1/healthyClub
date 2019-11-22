@@ -22,7 +22,7 @@
 
 <body class="bg-gradient-primary">
 
-<div class="container">
+<div class="container" th:if="${session.admin==null}">
 
     <!-- Outer Row -->
     <div class="row justify-content-center">
@@ -136,5 +136,10 @@
 </script>
 
 </body>
-
+<body th:unless="${session.admin==null}" onload="turn()">
+<script>
+    function turn() {
+        window.location.href="/updateUser";
+    }
+</script>
 </html>
