@@ -7,3 +7,13 @@ src/test/java/.DS_Store
 target/classes/application.properties
 *.class
 *.properties
+*.xml
+src/main/java/com/sebookstore/demo/.DS_Store
+src/main/java/com/sebookstore/.DS_Store
+src/main/java/com/.DS_Store
+src/main/java/.DS_Store
+src/main/.DS_Store
+src/.DS_Store
+*.xml
+*.xml
+.DS_Store

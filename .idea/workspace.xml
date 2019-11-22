@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cc1da669-3f8b-488f-a20a-7b7a7ab0c077" name="默认更改列表" comment="">
-      <change beforePath="$USER_HOME$/Desktop/:Desktop/Win7/Github/healthyClub/.idea/workspace.xml" beforeDir="false" afterPath="$USER_HOME$/Desktop/:Desktop/Win7/Github/healthyClub/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sebookstore/demo/Controller/StatuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sebookstore/demo/Controller/StatuController.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -30,12 +32,12 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/sebookstore/demo/Controller/QueryController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="532">
-              <caret line="36" column="15" selection-start-line="36" selection-start-column="15" selection-end-line="36" selection-end-column="15" />
+            <state relative-caret-position="648">
+              <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -46,8 +48,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
+            <state relative-caret-position="162">
+              <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -55,8 +57,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/sebookstore/demo/Controller/BookController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1915">
-              <caret line="33" column="30" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
+            <state relative-caret-position="488">
+              <caret line="177" column="68" selection-start-line="177" selection-start-column="68" selection-end-line="177" selection-end-column="68" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/sebookstore/demo/Controller/StatuController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="532">
+              <caret line="54" column="12" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="12" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -94,7 +108,7 @@
   <component name="Git.Settings">
     <option name="UPDATE_CHANGES_POLICY" value="SHELVE" />
     <option name="UPDATE_TYPE" value="MERGE" />
-    <option name="RECENT_GIT_ROOT_PATH" value="$USER_HOME$/Desktop/:Desktop/Win7/Github/healthyClub" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -134,7 +148,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/sebookstore/demo/Service/Impl/JSServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/JiShi/self.html" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/Register/login.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/sebookstore/demo/Controller/StatuController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/sebookstore/demo/Repository/OrderRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/sebookstore/demo/Service/OrderService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/sebookstore/demo/Service/Impl/OrderServiceImpl.java" />
@@ -143,6 +156,7 @@
         <option value="$PROJECT_DIR$/src/main/resources/templates/Admin/updateJishi.html" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/sebookstore/demo/Controller/QueryController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/sebookstore/demo/Controller/StatuController.java" />
       </list>
     </option>
   </component>
@@ -174,7 +188,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -227,6 +240,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -313,6 +327,7 @@
       <workItem from="1574428484018" duration="3000" />
       <workItem from="1574428655499" duration="233000" />
       <workItem from="1574428892040" duration="543000" />
+      <workItem from="1574430978814" duration="73000" />
     </task>
     <task id="LOCAL-00001" summary="在 QueryController 加入了 Fucker">
       <created>1574425337441</created>
@@ -332,7 +347,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73646000" />
+    <option name="totallyTimeSpent" value="73719000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -383,8 +398,8 @@
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="LIMIT_HISTORY" value="false" />
     <ignored-roots>
-      <path value="$PROJECT_DIR$" />
       <path value="$USER_HOME$/Desktop/:Desktop/Github/healthyClub" />
+      <path value="$USER_HOME$/Desktop/:Desktop/Win7/Github/healthyClub" />
     </ignored-roots>
     <MESSAGE value="在 QueryController 加入了 Fucker" />
     <option name="LAST_COMMIT_MESSAGE" value="在 QueryController 加入了 Fucker" />
@@ -557,16 +572,6 @@
             <element signature="imports" expanded="true" />
             <element signature="e#505#506#0" expanded="true" />
             <element signature="e#571#572#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sebookstore/demo/Controller/StatuController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="27" column="15" selection-start-line="27" selection-start-column="15" selection-end-line="27" selection-end-column="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -755,24 +760,34 @@
     <entry file="file://$PROJECT_DIR$/.idea/uiDesigner.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/sebookstore/demo/Controller/QueryController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="648">
+          <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
+        <state relative-caret-position="162">
+          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/sebookstore/demo/Controller/BookController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1915">
-          <caret line="33" column="30" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
+        <state relative-caret-position="488">
+          <caret line="177" column="68" selection-start-line="177" selection-start-column="68" selection-end-line="177" selection-end-column="68" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/sebookstore/demo/Controller/QueryController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/sebookstore/demo/Controller/StatuController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="532">
-          <caret line="36" column="15" selection-start-line="36" selection-start-column="15" selection-end-line="36" selection-end-column="15" />
+          <caret line="54" column="12" selection-start-line="54" selection-start-column="12" selection-end-line="54" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
