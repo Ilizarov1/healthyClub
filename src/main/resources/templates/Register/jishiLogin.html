@@ -1,79 +1,80 @@
 <!DOCTYPE html>
-<!-- saved from url=(0050)https://v3.bootcss.com/examples/starter-template/# -->
-<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
 
+<head>
+
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="https://v3.bootcss.com/favicon.ico">
 
     <title>健康会所</title>
 
-    <!-- Bootstrap core CSS -->
-    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link th:href="@{/vendor/fontawesome-free/css/all.min.css}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link th:href="@{/css/offcanvas.css}" rel="stylesheet">
-    <link th:href="@{/css/dashboard.css}" rel="stylesheet">
-    <link th:href="@{/css/bootstrap-select.css}" rel="stylesheet">
+    <!-- Custom styles for this template-->
+    <link th:href="@{/css/sb-admin-2.min.css}" rel="stylesheet">
 
 </head>
 
-<body>
-<nav class="navbar navbar-fixed-top navbar-inverse">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" th:href="@{/}">健康会所管理系统</a>
-        </div>
-    </div><!-- /.container -->
-</nav><!-- /.navbar -->
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">
-            <ul class="nav nav-sidebar">
-                <!--
-                <li><a th:href="@{/user}">新增用户 <span class="sr-only">(current)</span></a></li>
-                <li><a th:href="@{/user/active}">活跃用户</a></li>
-                <li><a th:href="@{/user/silence}">沉默用户</a></li>
-                <li><a th:href="@{/user/analysis}">用户留存分析</a></li>
-                -->
-            </ul>
-        </div>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h1 class="page-header">技师登录</h1>
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="form-group">
-                        <label for="userName">账号</label>
-                        <input type="text" class="form-control" name="userName" id="userName" placeholder="请输入账号">
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd">密码</label>
-                        <input type="text" class="form-control" name="pwd" id="pwd" placeholder="请输入密码">
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary" onclick="checkValidityAndSubmit()">提交</button>
-                        <button class="btn btn-default"><a th:href="@{/}">返回</a> </button>
+<body class="bg-gradient-primary">
+
+<div class="container">
+
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+
+        <div class="col-xl-10 col-lg-12 col-md-9">
+
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
+                        <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                        <div class="col-lg-6">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4">欢迎,技师！</h1>
+                                </div>
+                                <form class="user">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control form-control-user" id="userName"  placeholder="输入用户名">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control form-control-user" id="pwd" placeholder="输入密码">
+                                    </div>
+                                    <a href="#" onclick="checkValidityAndSubmit();" class="btn btn-primary btn-user btn-block">
+                                        登陆
+                                    </a>
+                                </form>
+                                <hr>
+                                <div class="text-center">
+                                    <a class="small" href="/">返回</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
+
     </div>
+
 </div>
-</div>
 
+<!-- Bootstrap core JavaScript-->
+<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
 
+<!-- Core plugin JavaScript-->
+<script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
 
-<script th:src="@{/js/jquery.min.js}"></script>
-<script th:src="@{/js/bootstrap.js}"></script>
+<!-- Custom scripts for all pages-->
+<script th:src="@{/js/sb-admin-2.min.js}"></script>
 <script>
     function checkValidityAndSubmit() {
         var user={
@@ -133,6 +134,6 @@
         return false;
     }
 </script>
+</body>
 
-
-</body></html>
+</html>
