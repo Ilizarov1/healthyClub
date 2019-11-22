@@ -34,4 +34,4 @@ public class QueryController {
     }
 }
 
-//fucker fucker
+//fucker
