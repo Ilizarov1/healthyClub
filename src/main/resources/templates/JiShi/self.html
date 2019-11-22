@@ -32,6 +32,9 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" th:href="@{/}">健康会所管理系统</a>
+            <text th:if="${session.jishi != null}" class="navbar-brand" font-size="8px">技师</text>
+            <text th:if="${session.jishi != null}" class="navbar-brand" th:text=" ${session.jishi.getJsName()}"></text>            <button th:if="${session.jishi != null}" class="btn btn-outline-info" onclick="loginOut()">注销</button>
+
         </div>
     </div><!-- /.container -->
 </nav><!-- /.navbar -->
@@ -157,8 +160,25 @@ function checkDetail(bookId) {
         }
 
     });
-}
 
+}
+function loginOut() {
+    $.ajax({
+        type: "POST",
+        url: "/loginOut",
+        contentType: 'application/json;charset=UTF-8',
+        data: {},
+        success: function (data) {
+            if (data == 'success') {
+                alert('退出成功！');
+                window.location.href = '/';
+            } else {
+                alert('发生错误,完成失败');
+                history.back(-1);
+            }
+        }
+    })
+}
 function putBookBlock(healthyItemList) {
     var tBody=document.getElementById("bookBody");
     for(var i=0;healthyItemList.length!=null&&i<healthyItemList.length;i++) {

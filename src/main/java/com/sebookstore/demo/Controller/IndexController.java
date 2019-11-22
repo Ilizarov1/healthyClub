@@ -85,4 +85,6 @@ public class IndexController
     public String jishisignup(){return "register/jishisignup";}
     @RequestMapping(value = "itemUpdated")
     public String itemUpdated(){return "admin/itemUpdated";}
+    @RequestMapping(value = "/adminAddJs")
+    public String AdminAddJs(){return "admin/registerJs";}
 }

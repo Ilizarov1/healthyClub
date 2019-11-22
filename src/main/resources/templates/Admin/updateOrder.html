@@ -32,6 +32,9 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" th:href="@{/}">健康会所管理系统</a>
+            <text th:if="${session.admin != null}" class="navbar-brand" font-size="8px">管理员</text>
+            <text th:if="${session.admin != null}" class="navbar-brand" th:text=" ${session.admin.getAdminName()}"></text>
+            <button th:if="${session.admin != null}" class="btn btn-outline-info" onclick="loginOut()">注销</button>
         </div>
     </div><!-- /.container -->
 </nav><!-- /.navbar -->
@@ -103,6 +106,23 @@
                 "</tr>";
         }
     }
+    function loginOut() {
+        $.ajax({
+            type: "POST",
+            url: "/loginOut",
+            contentType: 'application/json;charset=UTF-8',
+            data: {},
+            success: function (data) {
+                if (data == 'success') {
+                    alert('退出成功！');
+                    window.location.href = '/';
+                } else {
+                    alert('发生错误,完成失败');
+                    history.back(-1);
+                }
+            }
+        })
+    }
 </script>
 
 
@@ -112,6 +132,7 @@
     function illegal() {
         alert("您还不是管理员/没有进行管理员登陆");
     }
+
 </script>
 </body>
 </html>
