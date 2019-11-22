@@ -21,7 +21,7 @@
 
 </head>
 
-<body th:if="${session.jishi!=null}" onload="getList()">
+<body th:if="${session.jishi!=null}">
 <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
         <div class="navbar-header">
@@ -102,8 +102,10 @@ function changeStatu(flag) {
             contentType: 'application/json;charset=UTF-8',
             data: staticId,
             success: function (data) {
+                console.log("daozhelile")
                 if(data == "success"){
                     alert("您已开始工作");
+                    window.location.href="/jsself";
                 }
                 else if(data == "failure"){
                     alert("出错了");
@@ -120,6 +122,7 @@ function changeStatu(flag) {
             success: function (data) {
                 if(data == "success"){
                     alert("您已暂停工作");
+                    window.location.href="/jsself";
                 }
                 else if(data == "failure"){
                     alert("出错了");
@@ -127,7 +130,6 @@ function changeStatu(flag) {
             }
         })
     }
-    window.location.reload()
 }
 
 function checkDetail(bookId) {

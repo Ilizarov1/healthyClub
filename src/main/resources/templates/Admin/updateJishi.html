@@ -44,7 +44,7 @@
             <ul class="nav nav-sidebar">
                 <li><a th:href="@{/updateBook}">所有项目</a></li>
                 <li><a th:href="@{/updateUser}">用户管理</a></li>
-                <li><a th:href="@{/updateJishi}">技师管理</a></li>
+                <li class="active"><a th:href="@{/updateJishi}">技师管理</a></li>
                 <li><a th:href="@{/updateOrder}">订单管理</a></li>
             </ul>
         </div>
@@ -157,21 +157,8 @@
     }
 
     function showOrdersInfo(id) {
-        var orderList;
-        var user = {
-            "id":id
-        }
+        window.location.href="/showInfo?id="+id;
         var staticUser = JSON.stringify(user);
-        $.ajax({
-            type:"POST",
-            url:"/getJsOrders",
-            contentType:'application/json;charset=UTF-8',
-            data: staticUser,
-            success:function (data) {
-                orderList=data;
-                alert(orderList.length)
-            }
-        })
     }
 
     function checkValidityAndSubmit(id) {
