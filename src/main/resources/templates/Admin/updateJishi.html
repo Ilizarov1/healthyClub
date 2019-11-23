@@ -35,8 +35,13 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" th:href="@{/}">健康会所管理系统</a>
+            <text th:if="${session.admin != null}" class="navbar-brand" font-size="8px">管理员</text>
+            <text th:if="${session.admin != null}" class="navbar-brand" th:text=" ${session.admin.getAdminName()}"></text>
+            <button th:if="${session.admin != null}" class="btn btn-outline-info" onclick="loginOut()">注销</button>
         </div>
+
     </div><!-- /.container -->
+
 </nav><!-- /.navbar -->
 <div class="container-fluid">
     <div class="row">
@@ -69,7 +74,7 @@
             </div>
 
             <div class="row">
-                <button class="btn btn-primary" onclick="location='/jishisignup'">新增技师</button>
+                <button class="btn btn-primary" onclick="addJs()">新增技师</button>
             </div>
         </div>
     </div>
@@ -83,8 +88,9 @@
 <script>
 
     function doMission(id) {
-        window.location.href="/doMission?id="+id;
+        window.location.href = "/doMission?id=" + id;
     }
+
     function getList() {
         var jsList;
         $.ajax({
@@ -118,25 +124,28 @@
         var tBody = document.getElementById("bookBody");
         tBody.innerHTML = "";
         for (var i = 0; jsList.length != null && i < jsList.length; i++) {
-            if(jsList[i].id == index){
+            if (jsList[i].id == index) {
                 tBody.innerHTML = tBody.innerHTML + "<tr>" +
-                    "<td width='200px'><input type='text' name='newName' id='newName' value='"+jsList[i].jsName+"'></td>" +
-                    "<td width='200px'><input type='text' name='newPwd' id='newPwd' value='"+jsList[i].jsPwd+"'></td>" +
-                    "<td width='200px'><input type='text' name='newStatu' id='newStatu' value ='"+jsList[i].jsStatu+"'></td>" +
-                    "<td width='200px'><button class=\"btn btn-primary\" onclick='checkValidityAndSubmit("+jsList[i].id+")'>确定</button></td>" +
+                    "<td width='200px'><input type='text' name='newName' id='newName' value='" + jsList[i].jsName + "'></td>" +
+                    "<td width='200px'><input type='text' name='newPwd' id='newPwd' value='" + jsList[i].jsPwd + "'></td>" +
+                    "<td width='200px'><input type='text' name='newStatu' id='newStatu' value ='" + jsList[i].jsStatu + "'></td>" +
+                    "<td width='200px'><button class=\"btn btn-primary\" onclick='doMission(" + jsList[i].id + ")'>分配</button></td>" +
+                    "<td width='200px'><button class=\"btn btn-primary\" onclick='checkValidityAndSubmit(" + jsList[i].id + ")'>确定</button></td>" +
                     "<td width='200px'><button class=\"btn btn-primary\" onclick='cancel()'>取消</button> </td>" +
                     "</tr>";
-            }else{
+            } else {
                 tBody.innerHTML = tBody.innerHTML + "<tr>" +
                     "<td width='200px'>" + jsList[i].jsName + "</td>" +
                     "<td width='200px'>" + jsList[i].jsPwd + "</td>" +
                     "<td width='200px'>" + jsList[i].jsStatu + "</td>" +
-                    "<td width='200px'><button class=\"btn btn-primary\" onclick='doUpdate("+jsList[i].id+")'>修改</button></td>" +
-                    "<td width='200px'><button class=\"btn btn-primary\" onclick='showOrdersInfo("+jsList[i].id+")'>更多</button> </td>" +
+                    "<td width='200px'><button class=\"btn btn-primary\" onclick='doMission(" + jsList[i].id + ")'>分配</button></td>" +
+                    "<td width='200px'><button class=\"btn btn-primary\" onclick='doUpdate(" + jsList[i].id + ")'>修改</button></td>" +
+                    "<td width='200px'><button class=\"btn btn-primary\" onclick='showOrdersInfo(" + jsList[i].id + ")'>更多</button> </td>" +
                     "</tr>";
             }
         }
     }
+
     function illegal() {
         alert("您还不是管理员/没有进行管理员登陆");
     }
@@ -151,13 +160,17 @@
             data: {},
             success: function (data) {
                 jsList = data;
-                putAlterBookBlock(jsList,id)
+                putAlterBookBlock(jsList, id)
             }
         })
     }
 
+    function addJs() {
+        window.location.href = "/adminAddJs"
+    }
+
     function showOrdersInfo(id) {
-        window.location.href="/showInfo?id="+id;
+        window.location.href = "/showInfo?id=" + id;
         var staticUser = JSON.stringify(user);
     }
 
@@ -189,6 +202,7 @@
             });
         }
     }
+
     function cancel() {
         getList()
     }
@@ -226,6 +240,25 @@
         alter("状态错误，只能为0或者1");
         return false;
     }
+
+    function loginOut() {
+        $.ajax({
+            type: "POST",
+            url: "/loginOut",
+            contentType: 'application/json;charset=UTF-8',
+            data: {},
+            success: function (data) {
+                if (data == 'success') {
+                    alert('退出成功！');
+                    window.location.href = '/';
+                } else {
+                    alert('发生错误,完成失败');
+                    history.back(-1);
+                }
+            }
+        })
+    }
+
 </script>
 
 
