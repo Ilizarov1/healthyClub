@@ -87,4 +87,6 @@ public class IndexController
     public String itemUpdated(){return "admin/itemUpdated";}
     @RequestMapping(value = "/adminAddJs")
     public String AdminAddJs(){return "admin/registerJs";}
+    @RequestMapping(value = "/tongji")
+    public String TongJi(){return "admin/statistics";}
 }

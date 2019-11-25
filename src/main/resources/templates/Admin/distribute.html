@@ -89,7 +89,7 @@
                     </div>
                     <div class="form-group">
                         <button class="btn btn-primary" onclick="checkValidityAndSubmit()">提交</button>
-                        <button class="btn btn-default"><a th:href="@{/}">返回</a> </button>
+                        <button class="btn btn-default" onclick="back()">返回</button>
                     </div>
                 </div>
             </div>
@@ -153,11 +153,11 @@
                 success:function (data) {
                     if(data=="success"){
                         alert("新增成功");
-                        location="/addItem";
+                        location="/updateJishi";
                     }
                     else if(data=="failure"){
                         alert("新增失败");
-                        location="/addItem";
+                        location="/updateJishi";
                     }
                 },
                 error:function (e) {
@@ -227,6 +227,10 @@
             return false;
         }
         return true;
+    }
+
+    function back() {
+        window.location.href = "/updateJishi"
     }
 
 

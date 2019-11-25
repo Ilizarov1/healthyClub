@@ -44,6 +44,9 @@ public class UserOrder implements Serializable
     private String healthyitemName;
     @Column
     private String type;
+
+
+
     @Column
     private boolean state;
     @Column
@@ -53,7 +56,12 @@ public class UserOrder implements Serializable
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date endTime;
 
-
+    public void setState(boolean state) {
+        this.state = state;
+    }
+    public boolean getState() {
+        return this.state;
+    }
     public Long getId() {
         return id;
     }
@@ -78,14 +86,6 @@ public class UserOrder implements Serializable
         this.healthyitemId = healthyitemId;
     }
 
-    public void setState(boolean state)
-    {
-        this.state = state;
-    }
-    public boolean getState()
-    {
-        return state;
-    }
 
     public void setEndTime(Date endTime)
     {

@@ -14,4 +14,7 @@ public interface OrderRepository extends JpaRepository<UserOrder,Long>
     List<UserOrder> findAll();
     List<UserOrder> findByHealthyitemId(Long healthyitemId);
     UserOrder findById(long Id);
+
+    List<UserOrder> findAllByState(boolean state);
+    List<UserOrder> findAllByType(String typpe);
 }

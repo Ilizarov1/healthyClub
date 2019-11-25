@@ -37,4 +37,10 @@ public class OrderServiceImpl implements OrderService
     {
         return orderRepository.findByJsId(jsId);
     }
+
+    @Override
+    public List<UserOrder> findAllByState(boolean state){return orderRepository.findAllByState(state);}
+    @Override
+    public List<UserOrder> findAllByType(String type){return orderRepository.findAllByType(type);}
+
 }

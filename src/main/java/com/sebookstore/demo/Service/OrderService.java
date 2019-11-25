@@ -12,4 +12,7 @@ public interface OrderService
     List<UserOrder> findByHealthyitemId(long healthyitemId);
     List<UserOrder> findByJsId(long jsId);
     UserOrder save(UserOrder userOrder);
+
+    List<UserOrder> findAllByState(boolean state);
+    List<UserOrder> findAllByType(String type);
 }
