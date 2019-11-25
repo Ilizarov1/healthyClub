@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)https://v3.bootcss.com/examples/starter-template/# -->
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="https://v3.bootcss.com/favicon.ico">
+
+    <title>健康会所</title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/offcanvas.css}" rel="stylesheet">
+    <link th:href="@{/css/dashboard.css}" rel="stylesheet">
+    <link th:href="@{/css/bootstrap-select.css}" rel="stylesheet">
+
+</head>
+
+<body th:if="${session.admin!=null}" onload="getList()">
+<nav class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" th:href="@{/}">健康会所管理系统</a>
+            <text th:if="${session.admin != null}" class="navbar-brand" font-size="8px">管理员</text>
+            <text th:if="${session.admin != null}" class="navbar-brand"
+                  th:text=" ${session.admin.getAdminName()}"></text>
+            <button th:if="${session.admin != null}" class="btn btn-outline-info" onclick="loginOut()">注销</button>
+        </div>
+    </div><!-- /.container -->
+</nav><!-- /.navbar -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li><a th:href="@{/updateBook}">所有项目</a></li>
+                <li class="active"><a th:href="@{/updateUser}">用户管理</a></li>
+                <li><a th:href="@{/updateJishi}">技师管理</a></li>
+                <li><a th:href="@{/updateOrder}">订单管理</a></li>
+                <li><a th:href="@{/tongji}">统计</a></li>
+
+            </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">数据统计</h1>
+            <div class="row">
+                <userCountBody id="userCount"></userCountBody>
+            </div>
+            <div class="row">
+                <jishiCountBody id="jishiCount"></jishiCountBody>
+            </div>
+            <div class="row">
+                <onlinejishiCountBody id="onlinejishiCount"></onlinejishiCountBody>
+            </div>
+            <div class="row">
+                <finishedOrderCountBody id="finishedOrderCount"></finishedOrderCountBody>
+            </div>
+            <div class="row">
+                <typeOrderCountBody id="typeOrderCount"></typeOrderCountBody>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/bootstrap.js}"></script>
+<script th:src="@{/js/dayjs.min.js}"></script>
+<script>
+    function getList() {
+        $.ajax({
+            type: "POST",
+            url: "/getUsersCount",
+            contentType: 'application/json;charset=UTF-8',
+            data: {},
+            success: function (data) {
+                var userCountBody = document.getElementById("userCount");
+                userCountBody.innerHTML = userCountBody.innerHTML +"<h3>"+"用户数量:" +data.length + "</h3>" ;
+            }
+        });
+        $.ajax({
+            type: "POST",
+            url: "/getJishiCount",
+            contentType: 'application/json;charset=UTF-8',
+            data: {},
+            success: function (data) {
+                var jishiCountBody = document.getElementById("jishiCount");
+                jishiCountBody.innerHTML = jishiCountBody.innerHTML +"<h3>"+"技师数量:" +data.length + "</h3>" ;
+            }
+        });
+        $.ajax({
+            type: "POST",
+            url: "/getOnlineJishiCount",
+            contentType: 'application/json;charset=UTF-8',
+            data: {},
+            success: function (data) {
+                var onlinejishiCountBody = document.getElementById("onlinejishiCount");
+                onlinejishiCountBody.innerHTML = onlinejishiCountBody.innerHTML +"<h3>"+"在线技师数量:" +data.length + "</h3>" ;
+            }
+        });
+
+        $.ajax({
+            type: "POST",
+            url: "/getFinishedOrderCount",
+            contentType: 'application/json;charset=UTF-8',
+            data: {},
+            success: function (data) {
+                var finishedOrderCountBody = document.getElementById("finishedOrderCount");
+                finishedOrderCountBody.innerHTML = finishedOrderCountBody.innerHTML +"<h3>"+"已完成订单数量:" +data.length + "</h3>" ;
+            },
+            error:function (data) {
+                console.log(data)
+            }
+        });
+
+        $.ajax({
+            type: "POST",
+            url: "/getTypeOrderCount?type=大保健",
+            contentType: 'application/json;charset=UTF-8',
+            data: {},
+            success: function (data) {
+                var typeOrderCountBody = document.getElementById("typeOrderCount");
+                typeOrderCountBody.innerHTML = typeOrderCountBody.innerHTML +"<h3>"+"大保健订单数量:" +data.length + "</h3>" ;
+            }
+        })
+    }
+
+
+    function cancel() {
+        getList();
+    }
+
+    function loginOut() {
+        $.ajax({
+            type: "POST",
+            url: "/loginOut",
+            contentType: 'application/json;charset=UTF-8',
+            data: {},
+            success: function (data) {
+                if (data == 'success') {
+                    alert('退出成功！');
+                    window.location.href = '/';
+                } else {
+                    alert('发生错误,完成失败');
+                    history.back(-1);
+                }
+            }
+        })
+    }
+</script>
+
+
+</body>
+<body th:unless="${session.admin!=null}" onload="illegal()">
+<script>
+    function illegal() {
+        alert("您还不是管理员/没有进行管理员登陆");
+    }
+
+</script>
+</body>
+</html>
